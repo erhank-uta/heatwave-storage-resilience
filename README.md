@@ -102,3 +102,11 @@ B. Bilir, E. Kutanoglu, J. J. Hasenbein, and J. K. Skolfield, *A Data-Driven App
 
 This repository provides code and processed scenario inputs supporting the manuscript.
 <!-- END ASSOCIATED PAPER -->
+
+## Licensing
+
+Original research software in this repository is released under the [MIT License](LICENSE)
+(Copyright (c) 2026 Erhan Kutanoglu). The license does not override separate
+terms for third-party TX123-BT network data, processed weather/scenario data,
+IBM WeatherGen, or Gurobi. See [Data licensing and attribution](docs/DATA_LICENSE.md)
+and [Data provenance](docs/DATA_PROVENANCE.md).
