@@ -1,55 +1,96 @@
 # Heatwave Storage Resilience
 
-Reproduction package for stochastic transmission-level energy-storage planning
-under heat-wave scenarios using the TX123-BT synthetic power system.
+Research reproducibility package for transmission-level battery energy-storage
+placement under multiday heat-wave uncertainty on the synthetic TX123-BT network.
 
-## Scope
+**Software author:** Erhan Kutanoglu  
+**Repository:** https://github.com/erhank-uta/heatwave-storage-resilience
 
-This repository includes the authoritative V7.4 optimization implementation and
-processed inputs for the **strict23** and **expanded48** scenario sets. It supports
-reproduction of optimization experiments from these processed scenarios. It does
-**not** reproduce the entire upstream AORC-to-weather-generator pipeline or include
-the complete 100-member synthetic weather ensemble.
+## What this repository reproduces
 
-The included NPZ files contain hourly bus-level loads and renewable availability.
-Selected bus-level daily weather files are provided for provenance and
-temperature-derating sensitivity.
+The package provides the V7.4 two-stage stochastic optimization model and
+processed scenario inputs for the 23 strict heat-wave scenarios (`primary23`)
+and the expanded 48-scenario set (`expanded48`, comprising the 23 strict and 25
+supplemental near-heat-wave scenarios). The inputs contain 168 hourly periods
+and 123 buses. Storage locations and module counts are common to all scenarios;
+operations are scenario-specific. The model minimizes expected unserved energy
+first and expected thermal production cost second.
 
-## Requirements
+The repository includes the single-scenario/PI interface, the mean-scenario
+inputs, a freeze-after-Level-1 expanded48 implementation, and four
+weather-dependent transmission-derating variants. See
+[experiment instructions](experiments/README.md).
 
-- Python environment with the packages in `requirements.txt`
-- A separately obtained, valid Gurobi license (not distributed here)
-- Sufficient memory and runtime for large 23- and 48-scenario runs
+**Reproducibility boundary:** The supplied processed scenario files allow the
+optimization experiments to be rerun without regenerating the underlying
+weather ensemble. Raw AORC observations, the complete 100-member weather
+ensemble, and the full upstream weather-to-load/renewables pipeline are not
+included. See [data provenance](docs/DATA_PROVENANCE.md).
 
-Tested on macOS Apple M2 Max with Python dependencies including Gurobi 13.0.3.
-Solver results and runtime can vary by hardware, version, and numerical settings.
+## Setup
 
-## Quick start
+Python dependencies are listed in `requirements.txt`. A separate, valid
+[Gurobi](https://www.gurobi.com/) license is required; no license or
+credentials are distributed. Install dependencies in a virtual environment:
 
 ```bash
 python -m pip install -r requirements.txt
 python tx123bt_gurobi_lexicographic_v7_4.py --help
+```
+
+The package was smoke-tested on an Apple M2 Max with Gurobi 13.0.3. The
+single-scenario STRICT_021 (zero-based scenario index 20) run reproduced zero
+Level-1 load shedding and approximately $202.075 million in Level-2 production
+cost, with model validation passing:
+
+```bash
 bash experiments/run_strict021_smoke_test.sh
 ```
 
-For full multi-scenario experiments, see `experiments/README.md`.
+## Main experiments
 
-## Input data
+```bash
+bash experiments/run_strict23_baseline.sh
+bash experiments/run_expanded48_40x4.sh
+bash experiments/run_temperature_derating.sh 40 4
+```
 
-The `data/TX123BT/` directory contains the network inputs used by the model.
-The scenario files retain the original relative paths expected by V7.4.
-See `docs/DATA_PROVENANCE.md` and `docs/file_inventory.csv`.
+These multi-scenario runs can require substantial RAM and computation time.
+The expanded48 wrapper uses the historical freeze-after-Level-1 model rather
+than the ordinary V7.4 second-stage placement optimization. The derating
+variant applies a 1% per degree C reduction above 30 C, floored at 80%,
+using the maximum endpoint-bus daily Tmax repeated over 24 hours.
 
-## Reproducibility boundary
+For perfect-information evaluation, run the main V7.4 model with one scenario
+index at a time. Details, solver options, and published reference WS/EVPI
+values appear in [experiments/README.md](experiments/README.md).
 
-Prepared strict23/expanded48 loads and renewable availability are provided;
-upstream TX123-BT and AORC datasets and the weather-generation software should
-be obtained from their respective original sources. Full bibliographic citations,
-source URLs, and redistribution terms must be verified and completed before release.
+## Files
 
-## Licensing and citation
+- `tx123bt_gurobi_lexicographic_v7_4.py`: core stochastic optimization.
+- `code/expanded48/`: exact freeze-after-Level-1 variant.
+- `code/temperature_derating/`: weather-dependent line-capacity variants.
+- `data/TX123BT/`: network input files.
+- `data/AORC_TX123BT/.../`: processed load, renewable, and selected weather files.
+- `experiments/`: reproduction commands and methodological notes.
+- `docs/`: provenance and file checksums.
 
-**Pending before public release:** verify redistribution rights for TX123-BT
-network files and generated scenario data; choose and add an appropriate LICENSE
-for original code; complete CITATION.cff with the paper's authors and citation.
-Do not publish Gurobi license files or WLS credentials.
+## Upstream sources and attribution
+
+This work builds on the TX123-BT synthetic grid, NOAA's Analysis of Record for
+Calibration (AORC) weather data, and research associated with IBMWeatherGen.
+The source URLs and methodological distinctions are documented in
+[docs/DATA_PROVENANCE.md](docs/DATA_PROVENANCE.md). These upstream works should
+be cited independently of this repository.
+
+## Citation and licensing
+
+Use the GitHub citation metadata in `CITATION.cff` to cite the software. The
+paper's full bibliographic information will be added when finalized.
+
+**License review pending:** No license is granted for original code merely by
+making the repository accessible. An MIT license for the original code is
+proposed, subject to confirmation of the copyright holder and UT Austin's
+software-release requirements. Upstream datasets and third-party software
+retain their respective terms. Do not make the repository public until this
+review and the data redistribution checks are complete.
