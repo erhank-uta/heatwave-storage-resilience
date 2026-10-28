@@ -1,38 +1,38 @@
-# Data licensing and attribution
+# Data licenses and attribution
 
-This repository combines original research software with third-party network
-inputs and processed research scenario datasets. The root `LICENSE` grants the
-MIT License to the original software authored for this repository; it does
-**not** relicense third-party data, upstream software, or proprietary solvers.
+This repository uses **different licenses for software and data**.
 
-## TX123-BT network data
+| Material | License / treatment |
+|---|---|
+| Original Python optimization code and experiment scripts | [MIT License](../LICENSE), copyright (c) 2026 Erhan Kutanoglu |
+| Author-generated synthetic heat-wave scenarios and derived hourly bus-level load and renewable-availability datasets under `data/AORC_TX123BT/` | [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/), to the extent the authors hold licensing rights |
+| Original TX123-BT network inputs under `data/TX123BT/` | Original TX123-BT license (CC BY 4.0); retain source attribution and any applicable notices |
+| IBMWeatherGen software | Not redistributed here; refer to its upstream repository and license |
+| Historical AORC meteorological data | Not redistributed here; cite the original NOAA source |
+| Gurobi solver | Not distributed or licensed by this repository; users must obtain their own license |
 
-The included `data/TX123BT/` files derive from the TX123-BT synthetic power
-system. The original TX123-BT distribution identifies its dataset license as
-Creative Commons Attribution 4.0 (CC BY 4.0). Attribute the original dataset,
-link to its source and license, and identify adaptations. Verify that the
-particular copied files are covered by those terms.
+## Attribution for the processed scenario datasets
 
-Original source: https://rpglab.github.io/resources/TX123BT/
-License: https://creativecommons.org/licenses/by/4.0/
+When using the author-generated scenario data, cite:
 
-## Weather and scenario data
+B. Bilir, E. Kutanoglu, J. J. Hasenbein, and J. K. Skolfield,
+*A Data-Driven Approach to Enhancing Grid Resilience to Heatwaves with Optimal
+Deployment of Grid-level Energy Storage Systems*,
+manuscript under revision for *Energy*.
 
-The bundled NPZ and selected-week Parquet files are processed research outputs
-from a workflow using AORC meteorological data and a weather-generation and
-scenario-selection pipeline. These are not unmodified AORC observations. They
-are distributed for reproducibility of the associated optimization experiments;
-no separate open-data license is asserted here pending confirmation of the
-applicable rights and upstream conditions.
+Please also cite the upstream TX123-BT, AORC, and IBMWeatherGen sources as
+appropriate; see [DATA_PROVENANCE.md](DATA_PROVENANCE.md).
 
-AORC source: https://registry.opendata.aws/noaa-nws-aorc/
-IBM WeatherGen software: https://github.com/IBM/IBMWeatherGen
+Under CC BY 4.0, give appropriate credit, provide a link to the license,
+and indicate if changes were made. This license does not require that
+adaptations be distributed under the same license.
 
-The full AORC source archive and the 100-member weather ensemble are not
-included. See `docs/DATA_PROVENANCE.md` for methodological context and
-bibliographic attribution.
+The MIT license in the repository root applies to original software, **not
+automatically to third-party data**. This document does not relicense any
+third-party material or override applicable upstream terms.
 
-## Dependencies
+## Scope of the data release
 
-Gurobi is a separately licensed proprietary solver. A valid Gurobi license is
-required to run the optimization; no license or credentials are distributed.
+The repository provides selected synthetic weather and processed optimization
+inputs, not the complete upstream AORC dataset or the 100-member weather
+simulation ensemble. Refer to the provenance documentation for details.

@@ -105,8 +105,13 @@ This repository provides code and processed scenario inputs supporting the manus
 
 ## Licensing
 
-Original research software in this repository is released under the [MIT License](LICENSE)
-(Copyright (c) 2026 Erhan Kutanoglu). The license does not override separate
-terms for third-party TX123-BT network data, processed weather/scenario data,
-IBM WeatherGen, or Gurobi. See [Data licensing and attribution](docs/DATA_LICENSE.md)
-and [Data provenance](docs/DATA_PROVENANCE.md).
+Original Python optimization code and experiment scripts are released under
+the [MIT License](LICENSE) (copyright (c) 2026 Erhan Kutanoglu).
+Author-generated synthetic heat-wave scenarios and derived load/renewable
+datasets are released under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), to the extent
+the authors hold the relevant rights. The included TX123-BT network inputs
+retain their original license and attribution requirements. See
+[Data licenses and attribution](docs/DATA_LICENSE.md) and
+[Data provenance](docs/DATA_PROVENANCE.md) for details.
+
