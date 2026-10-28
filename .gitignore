@@ -1,0 +1,29 @@
+# Private credentials / licenses
+private/
+*.lic
+.env
+.env.*
+!.env.example
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+# Optimization outputs and logs
+results/
+*.log
+*.sol
+*.mps
+*.lp
+# Local staging metadata may contain private absolute paths
+docs/staging_manifest.json
+# Operating system
+.DS_Store
+.ipynb_checkpoints/
+
+generated_freeze_after_level1/
+setup_repository_step2.py
+build_heatwave_storage_repository_step1.py
+expanded48_reproduction_audit.txt
+temperature_derating_reproduction_audit.txt
