@@ -94,3 +94,11 @@ proposed, subject to confirmation of the copyright holder and UT Austin's
 software-release requirements. Upstream datasets and third-party software
 retain their respective terms. Do not make the repository public until this
 review and the data redistribution checks are complete.
+
+<!-- BEGIN ASSOCIATED PAPER -->
+## Associated publication
+
+B. Bilir, E. Kutanoglu, J. J. Hasenbein, and J. K. Skolfield, *A Data-Driven Approach to Enhancing Grid Resilience to Heatwaves with Optimal Deployment of Grid-level Energy Storage Systems*. Revision under review for **Energy** (unpublished).
+
+This repository provides code and processed scenario inputs supporting the manuscript.
+<!-- END ASSOCIATED PAPER -->

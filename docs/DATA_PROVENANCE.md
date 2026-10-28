@@ -69,3 +69,11 @@ Before making this repository public, confirm: (1) redistribution terms for
 these exact TX123-BT files, (2) permission to release the processed scenario
 products, (3) source citations and upstream version identifiers, and (4) the
 copyright holder and license for original optimization code.
+
+<!-- BEGIN ASSOCIATED PAPER -->
+## Associated research publication
+
+B. Bilir, E. Kutanoglu, J. J. Hasenbein, and J. K. Skolfield, *A Data-Driven Approach to Enhancing Grid Resilience to Heatwaves with Optimal Deployment of Grid-level Energy Storage Systems*. Revision under review for **Energy** (unpublished).
+
+This repository provides code and processed scenario inputs supporting the manuscript.
+<!-- END ASSOCIATED PAPER -->

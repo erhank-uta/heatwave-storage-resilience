@@ -1,14 +1,16 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite this repository and the associated research paper when available."
-title: "Heatwave Storage Resilience: Stochastic Storage Planning Reproducibility Code"
+message: "If you use this repository, please cite the associated manuscript and this software."
 type: software
+title: "Heatwave Storage Resilience: Stochastic Energy Storage Planning"
 authors:
   - family-names: Kutanoglu
     given-names: Erhan
 repository-code: "https://github.com/erhank-uta/heatwave-storage-resilience"
+abstract: >-
+  Python/Gurobi optimization code and processed heat-wave scenario inputs for
+  stochastic transmission-level energy storage planning using TX123-BT.
 keywords:
-  - stochastic optimization
-  - power system resilience
   - energy storage
+  - stochastic optimization
+  - power systems
   - heat waves
-  - transmission networks
